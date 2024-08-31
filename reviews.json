@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. Emily Carter",
+        "subject": "Physics 101",
+        "stars": 5,
+        "review": "Dr. Carter explains complex concepts very clearly. Her lectures are engaging and the problem sets are challenging but fair."
+      },
+      {
+        "professor": "Prof. John Smith",
+        "subject": "Calculus II",
+        "stars": 4,
+        "review": "Prof. Smith is very knowledgeable and patient. The exams are tough but manageable if you follow along in class."
+      },
+      {
+        "professor": "Dr. Susan Lee",
+        "subject": "Introduction to Philosophy",
+        "stars": 3,
+        "review": "Dr. Lee's lectures can be a bit dry, but she is always open to questions and provides good feedback on essays."
+      },
+      {
+        "professor": "Prof. Michael Brown",
+        "subject": "Computer Science 101",
+        "stars": 2,
+        "review": "Prof. Brown is difficult to understand and his assignments are poorly explained. The grading is harsh."
+      },
+      {
+        "professor": "Dr. Karen Wilson",
+        "subject": "Organic Chemistry",
+        "stars": 4,
+        "review": "Dr. Wilson is an excellent professor who really cares about her students. Her exams are challenging but fair."
+      },
+      {
+        "professor": "Prof. David Johnson",
+        "subject": "World History",
+        "stars": 5,
+        "review": "Prof. Johnson's passion for history is contagious. His lectures are always interesting and he encourages class participation."
+      },
+      {
+        "professor": "Dr. Jennifer Taylor",
+        "subject": "Psychology 101",
+        "stars": 3,
+        "review": "Dr. Taylor is knowledgeable, but her lectures can be monotonous. The material is interesting, though."
+      },
+      {
+        "professor": "Prof. William Anderson",
+        "subject": "Microeconomics",
+        "stars": 2,
+        "review": "Prof. Anderson's lectures are difficult to follow and the textbook doesn't help much. The exams are tricky."
+      },
+      {
+        "professor": "Dr. Rachel Harris",
+        "subject": "Biology 201",
+        "stars": 4,
+        "review": "Dr. Harris is very enthusiastic about the subject. Her lab sessions are well-organized and informative."
+      },
+      {
+        "professor": "Prof. James Martinez",
+        "subject": "Introduction to Sociology",
+        "stars": 5,
+        "review": "Prof. Martinez is one of the best professors I've had. His classes are thought-provoking and he really cares about his students."
+      },
+      {
+        "professor": "Dr. Linda Thompson",
+        "subject": "English Literature",
+        "stars": 3,
+        "review": "Dr. Thompson is very knowledgeable, but her grading can be harsh. She expects a lot from her students."
+      },
+      {
+        "professor": "Prof. Robert Evans",
+        "subject": "Statistics",
+        "stars": 4,
+        "review": "Prof. Evans makes statistics interesting and understandable. His exams are tough but fair if you study."
+      },
+      {
+        "professor": "Dr. Angela Davis",
+        "subject": "Environmental Science",
+        "stars": 5,
+        "review": "Dr. Davis is a fantastic professor who is passionate about the environment. Her lectures are always engaging."
+      },
+      {
+        "professor": "Prof. Charles White",
+        "subject": "Marketing 101",
+        "stars": 2,
+        "review": "Prof. White's lectures are not very engaging and the assignments are confusing. The grading is inconsistent."
+      },
+      {
+        "professor": "Dr. Patricia Rodriguez",
+        "subject": "Anatomy and Physiology",
+        "stars": 4,
+        "review": "Dr. Rodriguez is a great professor. She explains difficult concepts well and her exams are challenging but fair."
+      },
+      {
+        "professor": "Prof. Kevin Walker",
+        "subject": "Political Science",
+        "stars": 3,
+        "review": "Prof. Walker's lectures are informative, but he can be a bit dry. The material is interesting, though."
+      },
+      {
+        "professor": "Dr. Elizabeth King",
+        "subject": "Chemistry 101",
+        "stars": 5,
+        "review": "Dr. King is an amazing professor who makes chemistry fun. Her labs are well-organized and her lectures are clear."
+      },
+      {
+        "professor": "Prof. Daniel Harris",
+        "subject": "Introduction to Art History",
+        "stars": 3,
+        "review": "Prof. Harris is knowledgeable, but his lectures can be a bit boring. The material is interesting, though."
+      },
+      {
+        "professor": "Dr. Barbara Miller",
+        "subject": "Human Anatomy",
+        "stars": 4,
+        "review": "Dr. Miller is very thorough and makes sure everyone understands the material. Her exams are tough but fair."
+      },
+      {
+        "professor": "Prof. Thomas Scott",
+        "subject": "Physics 201",
+        "stars": 2,
+        "review": "Prof. Scott's lectures are difficult to follow and his exams are very challenging. The grading is harsh."
+      }
+    ]
+  }
+  
