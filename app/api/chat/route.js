@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server"
-import Pinecone from '@pinecone-database/pinecone'
+import {Pinecone} from '@pinecone-database/pinecone'
 import OpenAI from "openai"
 
 const systemPrompt = 
@@ -32,6 +32,14 @@ Professor A: Specializes in neural networks and deep learning with excellent rev
 Professor B: Known for practical applications in machine learning and hands-on projects. Rating: 4.7/5.
 Professor C: Expert in statistical methods and theory with a focus on research. Rating: 4.6/5.
 Your goal is to assist students in finding the most suitable professors by providing well-curated and highly relevant recommendations based on their specific queries.
+
+Example answer:
+
+"Here are the top 3 math professors based on your query:
+
+Prof. Robert Evans - Subject: Statistics - Stars: ⭐⭐⭐⭐ (4/5) - Review: Prof. Evans makes statistics interesting and understandable. His exams are tough but fair if you study.
+Please provide the information as requested without any additional comments or suggestions."
+
 `
 //send request, get response
 export async function POST(req){
@@ -60,7 +68,7 @@ export async function POST(req){
         Professor: ${match.id}
         Review: ${match.metadata.review}
         Subject: ${match.metadata.subject}
-        Stars: ${match.metadata.stars}
+        Stars ${match.metadata.stars}
         \n\n
         `
     })
@@ -78,7 +86,7 @@ export async function POST(req){
         stream: true,
     })
 
-    const stream = ReadableStream({
+    const stream = new ReadableStream({
         async start(controller){
             const encoder = new TextEncoder()
             try{
