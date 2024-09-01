@@ -1,6 +1,9 @@
 'use client'
 import { useState, useEffect, useRef } from "react";
 import { Box, Stack, TextField, Button, Typography, Card, CardContent } from "@mui/material"
+import logo from "../public/logo.png"
+import Image from 'next/image';
+
 export default function Home() {
   const [messages, setMessages] = useState([
     {
@@ -111,9 +114,10 @@ export default function Home() {
             fontWeight: '700',
             color: '#333',
             textAlign: 'center',
-            marginBottom: '2px', 
+            marginBottom: '4px', 
           }}
         >
+          <Image alt="logo" src={logo} style={{ transform: 'translateY(10px)', paddingRight:"4px" }}></Image>
           Professor Finder
         </Typography>
         <Stack
@@ -253,7 +257,7 @@ export default function Home() {
             fontWeight: '700',
             color: '#333',
             textAlign: 'center',
-            marginBottom: '2px', 
+            marginBottom: '4px', 
           }}
         >
           Enrolled
