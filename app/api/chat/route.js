@@ -49,7 +49,7 @@ Expected Response:
     "review": "Professor Roberts is great, he makes classes fun and exciting."
   }
 ]
-
+DO NOT mAKE UP PROFESSORS
 Please provide the information as requested without any additional comments or suggestions.
 
 `
@@ -84,7 +84,7 @@ export async function POST(req){
         \n\n
         `
     })
-    console.log(resultString)
+
     const lastMessage = data[data.length-1]
     const lastMessageContent = lastMessage.content + resultString
     const lastDataWithoutLastMessage = data.slice(0,data.length-1)
