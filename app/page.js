@@ -118,10 +118,10 @@ export default function Home() {
         </Typography>
         <Stack
           direction="column"
-          width="550px"
+          width="700px"
           height="700px"
           border="4px solid #8a7c9b"
-          borderRadius="16px"
+          borderRadius="10px"
           maxHeight="84vh"
           p={3}
           spacing={3}
@@ -137,6 +137,7 @@ export default function Home() {
             overflow="auto"
             maxHeight="100%"
             sx={{
+              boxSizing: "border-box",
               // WebKit-based browsers (Chrome, Safari)
               '&::-webkit-scrollbar': {
                 width: '8px', // Width of the scrollbar
@@ -166,6 +167,7 @@ export default function Home() {
                     color= "white"
                     borderRadius={16}
                     p={3}
+                    maxWidth="90%"
                   >
                     {isValidJson(message.content) ? 
                       JSON.parse(message.content).map((prof, index) => (
@@ -213,12 +215,21 @@ export default function Home() {
               label = "Message"
               fullWidth
               value = {message}
+              sx={{
+                borderRadius: '20px', 
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '20px', 
+                },
+              }}
               onChange={(e) => {
                 setMessage(e.target.value)
               }}
             />
             <Button
               variant="contained"
+              sx={{
+                borderRadius: "10px"
+              }}
               onClick={sendMessage}
             >
                Send
@@ -252,7 +263,7 @@ export default function Home() {
           width="550px"
           height="700px"
           border="4px solid #4a3d9e"
-          borderRadius="16px"
+          borderRadius="10px"
           maxHeight="90vh"
           p={2}
           spacing={3}
@@ -261,16 +272,17 @@ export default function Home() {
             overflow: 'auto',
             backgroundColor: '#f5f5f7', 
             boxShadow: `0 12px 24px rgba(74, 61, 158, 0.4)`,
+            boxSizing: 'border-box',
             '&::-webkit-scrollbar': {
               width: '8px', // Width of the scrollbar
             },
             '&::-webkit-scrollbar-thumb': {
               backgroundColor: '#aaa', // Color of the scrollbar handle
-              borderRadius: '4px', // Rounds the edges of the scrollbar handle
+              borderRadius: '8px', // Rounds the edges of the scrollbar handle
             },
             '&::-webkit-scrollbar-track': {
               backgroundColor: '#f0f0f0', // Color of the scrollbar track (background)
-              borderRadius: '4px', // Rounds the edges of the scrollbar track
+              borderRadius: '8px', // Rounds the edges of the scrollbar track
             },
             scrollbarWidth: 'thin', // Make scrollbar thinner
             scrollbarColor: '#aaa #f0f0f0' // Handle and track color
@@ -289,6 +301,7 @@ export default function Home() {
                   backgroundColor: 'white',
                   transition: 'transform 0.3s, box-shadow 0.3s',
                   position: 'relative',
+                  padding:"10px",
                 }}
               >
                 <Button

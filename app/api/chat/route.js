@@ -85,8 +85,6 @@ export async function POST(req){
         `
     })
 
-    console.log(resultString, "\n\n\n\n\n")
-
     const lastMessage = data[data.length-1]
     const lastMessageContent = lastMessage.content + resultString
     const lastDataWithoutLastMessage = data.slice(0,data.length-1)
