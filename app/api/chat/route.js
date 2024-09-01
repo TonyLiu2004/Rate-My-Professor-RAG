@@ -16,24 +16,41 @@ Retrieving Relevant Information:
 Use RAG to retrieve relevant data from a knowledge base or database containing professor information, including reviews, ratings, and subject specialties.
 Generating Responses:
 
-Based on the retrieved data, generate a response that includes the top 3 professors matching the user's query. Each professor should be accompanied by a brief summary of their strengths, ratings, and any notable attributes that align with the user’s request.
+Based on the retrieved data, generate a JSON array that includes up to 4 professors matching the user's query. Each professor should be accompanied by a brief summary of their strengths, ratings, and any notable attributes that align with the user’s request.
 Providing Clear and Useful Information:
 
 Ensure that the information is clear, concise, and directly addresses the user's needs. Highlight key details that make each professor stand out according to the criteria specified in the query.
-User Interaction:
+
 Example User Query:
 
-"I’m looking for the top 3 professors for advanced machine learning at my university."
+"I’m looking for the top 3 professors."
 Expected Response:
 
-"Here are the top 3 math professors based on your query:
+[
+  {
+    "name": "Prof. Robert Evans",
+    "subject": "Statistics",
+    "stars": 4,
+    "rating": "⭐⭐⭐⭐",
+    "review": "Prof. Evans makes statistics interesting and understandable. His exams are tough but fair if you study."
+  },
+  {
+    "name": "Prof. John Adams",
+    "subject": "Math",
+    "stars": 3,
+    "rating": "⭐⭐⭐⭐",
+    "review": "Prof. Adams makes math tough but fair if you study."
+  },
+  {
+    "name": "Prof. Daniel Roberts",
+    "subject": "English",
+    "stars": 5,
+    "rating": "⭐⭐⭐⭐⭐",
+    "review": "Professor Roberts is great, he makes classes fun and exciting."
+  }
+]
 
-Prof. Robert Evans - Subject: Statistics - Stars: ⭐⭐⭐⭐ (4/5) - Review: Prof. Evans makes statistics interesting and understandable. His exams are tough but fair if you study.
-Prof. John Adams - Subject: Math - Stars: ⭐⭐⭐ (3/5) - Review: Prof. Adams makes math tough but fair if you study.
-Prof. Daniel Roberts - Subject: English - Stars: ⭐⭐⭐⭐⭐ (5/5) - Professor Roberts is great, he makes classes fun and exciting.
-
-
-Please provide the information as requested without any additional comments or suggestions."
+Please provide the information as requested without any additional comments or suggestions.
 
 `
 //send request, get response
@@ -67,7 +84,7 @@ export async function POST(req){
         \n\n
         `
     })
-
+    console.log(resultString)
     const lastMessage = data[data.length-1]
     const lastMessageContent = lastMessage.content + resultString
     const lastDataWithoutLastMessage = data.slice(0,data.length-1)

@@ -1,6 +1,6 @@
 'use client'
 import { useState} from "react";
-import { Box, Stack, TextField, Button } from "@mui/material"
+import { Box, Stack, TextField, Button, Typography } from "@mui/material"
 export default function Home() {
   const [messages, setMessages] = useState([
     {
@@ -49,6 +49,15 @@ export default function Home() {
     })
 
   }
+
+  function isValidJson(content) {
+    try {
+        JSON.parse(content);
+        return true;
+    } catch (e) {
+        return false;
+    }
+  }
   return (
     <div>
       <Box
@@ -87,7 +96,26 @@ export default function Home() {
                     borderRadius={16}
                     p={3}
                   >
-                    {message.content}
+                    {isValidJson(message.content) ? 
+                      JSON.parse(message.content).map((prof, index) => (
+                        <Box key={index} sx={{marginBottom:"20px"}}>
+                          <Typography variant="h6" component="div" >
+                            {prof.name}
+                          </Typography>
+                          <Typography variant="body2">
+                            Subject: {prof.subject}
+                          </Typography>
+                          <Typography variant="body2" sx={{marginBottom:"4px"}}>
+                            {prof.rating} {prof.stars}/5
+                          </Typography>
+                          <Typography variant="body2">
+                            {prof.review}
+                          </Typography>
+                      </Box>
+                      ))
+                      :
+                      <Box>{message.content}</Box>
+                    }
                   </Box>
                 </Box>
               ))
