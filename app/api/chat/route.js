@@ -28,21 +28,21 @@ Expected Response:
 
 [
   {
-    "name": "Prof. Robert Evans",
+    "name": "Professor Robert Evans",
     "subject": "Statistics",
     "stars": 4,
     "rating": "⭐⭐⭐⭐",
     "review": "Prof. Evans makes statistics interesting and understandable. His exams are tough but fair if you study."
   },
   {
-    "name": "Prof. John Adams",
+    "name": "Professor John Adams",
     "subject": "Math",
     "stars": 3,
     "rating": "⭐⭐⭐⭐",
     "review": "Prof. Adams makes math tough but fair if you study."
   },
   {
-    "name": "Prof. Daniel Roberts",
+    "name": "Professor Daniel Roberts",
     "subject": "English",
     "stars": 5,
     "rating": "⭐⭐⭐⭐⭐",
@@ -69,7 +69,7 @@ export async function POST(req){
         encoding_format: 'float',
     })
     const results = await index.query({
-        topK: 3,
+        topK: 10,
         includeMetadata: true,
         vector: embedding.data[0].embedding
     })
@@ -84,6 +84,8 @@ export async function POST(req){
         \n\n
         `
     })
+
+    console.log(resultString, "\n\n\n\n\n")
 
     const lastMessage = data[data.length-1]
     const lastMessageContent = lastMessage.content + resultString

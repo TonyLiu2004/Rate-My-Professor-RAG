@@ -1,6 +1,6 @@
 'use client'
-import { useState} from "react";
-import { Box, Stack, TextField, Button, Typography } from "@mui/material"
+import { useState, useEffect, useRef } from "react";
+import { Box, Stack, TextField, Button, Typography, Card, CardContent } from "@mui/material"
 export default function Home() {
   const [messages, setMessages] = useState([
     {
@@ -9,6 +9,16 @@ export default function Home() {
     }
   ])
   const [message, setMessage] = useState("")
+  const [enrolled, setEnrolled] = useState([])
+  const stackRef = useRef(null);
+
+  useEffect(() => {
+    // Scroll to the bottom of the stack when the enrolled list changes
+    if (stackRef.current) {
+      stackRef.current.scrollTop = stackRef.current.scrollHeight;
+    }
+  }, [enrolled]);
+
 
   const sendMessage = async () => {
     setMessages((messages) => [
@@ -58,23 +68,67 @@ export default function Home() {
         return false;
     }
   }
+
+  function handleEnroll(prof){
+    setEnrolled(prevEnrolled => {
+      const isEnrolled = prevEnrolled.some(item => item.name === prof.name);
+      if (!isEnrolled) {
+        const updatedEnrolled = [...prevEnrolled, prof];
+        return updatedEnrolled;
+      }
+      return prevEnrolled
+    });
+  }
+
+  function handleRemove(prof){
+    setEnrolled(prevEnrolled => 
+      prevEnrolled.filter(item => item.name !== prof.name)
+    );
+  }
+
   return (
-    <div>
+    <div style={{
+      display:"flex", 
+      flexDirection:"row", 
+      justifyContent:"space-evenly",
+      alignItems: "center",
+      width:"100vw",
+      height:"100vh",
+      flexWrap:"wrap",
+    }}>
       <Box
-        width="100vw"
-        height="100vh"
+        maxHeight="90vh"
         display="flex"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
+        margin="10px"
       >
+        <Typography
+          variant="h4" 
+          style={{
+            fontFamily: 'Poppins, sans-serif',
+            fontWeight: '700',
+            color: '#333',
+            textAlign: 'center',
+            marginBottom: '2px', 
+          }}
+        >
+          Professor Finder
+        </Typography>
         <Stack
           direction="column"
-          width="500px"
+          width="550px"
           height="700px"
-          border="1px solid black"
-          p={2}
+          border="4px solid #8a7c9b"
+          borderRadius="16px"
+          maxHeight="84vh"
+          p={3}
           spacing={3}
+          sx={{
+            backgroundColor: '#f5f5f7', 
+            boxShadow: `0 12px 24px rgba(74, 61, 158, 0.4)`,
+          }}
         >
           <Stack
             direction="column"
@@ -82,6 +136,23 @@ export default function Home() {
             flexGrow={1}
             overflow="auto"
             maxHeight="100%"
+            sx={{
+              // WebKit-based browsers (Chrome, Safari)
+              '&::-webkit-scrollbar': {
+                width: '8px', // Width of the scrollbar
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#aaa', // Color of the scrollbar handle
+                borderRadius: '4px', // Rounds the edges of the scrollbar handle
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: '#f0f0f0', // Color of the scrollbar track (background)
+                borderRadius: '4px', // Rounds the edges of the scrollbar track
+              },
+              // Firefox
+              scrollbarWidth: 'thin', // Make scrollbar thinner
+              scrollbarColor: '#aaa #f0f0f0' // Handle and track color
+            }}
           >
             {
               messages.map((message, index) => (
@@ -111,6 +182,17 @@ export default function Home() {
                           <Typography variant="body2">
                             {prof.review}
                           </Typography>
+                          <Button 
+                            sx={{
+                              backgroundColor:"green",
+                              color:"white",
+                              marginTop:"4px",
+                              borderRadius:"6px"
+                            }}
+                            onClick={() => handleEnroll(prof)}
+                          >
+                            Enroll
+                          </Button>
                       </Box>
                       ))
                       :
@@ -142,6 +224,114 @@ export default function Home() {
                Send
             </Button>
           </Stack>
+        </Stack>
+      </Box>
+
+      <Box
+        height="90vh"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        margin="10px"
+      >
+        <Typography
+          variant="h4" 
+          style={{
+            fontFamily: 'Poppins, sans-serif',
+            fontWeight: '700',
+            color: '#333',
+            textAlign: 'center',
+            marginBottom: '2px', 
+          }}
+        >
+          Enrolled
+        </Typography>
+        <Stack
+          direction="column"
+          width="550px"
+          height="700px"
+          border="4px solid #4a3d9e"
+          borderRadius="16px"
+          maxHeight="90vh"
+          p={2}
+          spacing={3}
+          flexGrow={1}
+          sx={{ 
+            overflow: 'auto',
+            backgroundColor: '#f5f5f7', 
+            boxShadow: `0 12px 24px rgba(74, 61, 158, 0.4)`,
+            '&::-webkit-scrollbar': {
+              width: '8px', // Width of the scrollbar
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#aaa', // Color of the scrollbar handle
+              borderRadius: '4px', // Rounds the edges of the scrollbar handle
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: '#f0f0f0', // Color of the scrollbar track (background)
+              borderRadius: '4px', // Rounds the edges of the scrollbar track
+            },
+            scrollbarWidth: 'thin', // Make scrollbar thinner
+            scrollbarColor: '#aaa #f0f0f0' // Handle and track color
+          }}
+          ref={stackRef}
+        >
+          {
+            enrolled.map((prof, key) => (
+              <Box key={key} 
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  borderRadius: '16px',
+                  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+                  border: '1px solid #e0e0e0',
+                  backgroundColor: 'white',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
+                  position: 'relative',
+                }}
+              >
+                <Button
+                  sx={{
+                    position: 'absolute', // Position button absolutely within the parent container
+                    top: '8px', // Adjust distance from the top
+                    right: '8px', // Adjust distance from the right
+                    minWidth: '24px',
+                    minHeight: '24px',
+                    p: 0, // Remove padding
+                    borderRadius: '50%', // Make the button round
+                    '&:hover': {
+                      bgcolor: '#d0d0d0', // Hover background color
+                    },
+                  }}
+                  onClick={() => handleRemove(prof)} // Handle button click
+                >
+                  <Typography color="red">x</Typography>
+                </Button>
+                <Box 
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    padding: '16px',
+                  }}
+                >
+                  <Typography variant="h6" component="div" style={{ fontWeight: 'bold' }}>
+                    {prof.name}
+                  </Typography>
+                  <Typography variant="body1" color="textSecondary">
+                    Subject: {prof.subject}
+                  </Typography>
+                  <Typography variant="body1" color="textPrimary">
+                    Rating: {prof.rating}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {prof.review}
+                  </Typography>
+                </Box>
+              </Box>
+            ))
+          }
         </Stack>
       </Box>
     </div>
